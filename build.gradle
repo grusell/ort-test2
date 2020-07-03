@@ -12,6 +12,8 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application
     id 'application'
+
+    id 'maven-publish'
 }
 
 repositories {
@@ -30,3 +32,20 @@ application {
     mainClassName = 'ort.test2.App'
 }
 
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      pom {
+        name = "Demo"
+        description = "A demonstration of Maven POM customization"
+        url = "http://www.example.com/project"
+        scm {
+          connection = "https://github.com/grusell/ort-test2.git"
+          developerConnection = "https://github.com/grusell/ort-test2.git"
+          url = "https://github.com/grusell/ort-test2.git"
+        }
+      }
+    }
+  }
+}
